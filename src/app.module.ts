@@ -26,7 +26,10 @@ import { SocialMediaType } from "./social_media_type/models/social_media_type.mo
 import { StoreSocialLink } from "./store_social_link/models/store_social_link.model";
 import { Discount } from "./discounts/models/discount.model";
 import { Category } from "./category/models/category.model";
-import { TypeModule } from './type/type.module';
+import { TypeModule } from "./type/type.module";
+import { Bot } from "./bot/model/bot.model";
+import { OtpModel } from "./users/models/otp.model";
+import { Address } from "./bot/model/address.model";
 
 @Module({
   imports: [
@@ -57,6 +60,9 @@ import { TypeModule } from './type/type.module';
         StoreSocialLink,
         Discount,
         Category,
+        Bot,
+        OtpModel,
+        Address
       ],
       autoLoadModels: true,
       sync: { alter: true },

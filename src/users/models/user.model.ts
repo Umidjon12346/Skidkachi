@@ -1,5 +1,6 @@
-import { Model, Table, Column, DataType } from "sequelize-typescript";
+import { Model, Table, Column, DataType, ForeignKey, BelongsTo } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
+import { Region } from "../../region/models/region.model";
 
 interface IUserCreationAttr {
   name: string;
@@ -107,10 +108,18 @@ export class User extends Model<User, IUserCreationAttr> {
     example: "region123",
     description: "Region ID associated with the user",
   })
-
   @Column({
     type: DataType.STRING,
     defaultValue: DataType.UUIDV4(),
   })
   declare activation_link: string;
+  @ForeignKey(() => Region)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: true,
+  })
+  declare regionId: number;
+
+  @BelongsTo(() => Region)
+  region: Region;
 }
